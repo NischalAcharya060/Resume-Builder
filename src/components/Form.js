@@ -6,6 +6,17 @@ function Form({ formData, setFormData }) {
         setFormData({ ...formData, [name]: value });
     };
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setFormData({ ...formData, photo: reader.result });
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleEducationChange = (index, e) => {
         const updatedEducation = formData.education.map((edu, i) =>
             i === index ? { ...edu, [e.target.name]: e.target.value } : edu
@@ -36,6 +47,10 @@ function Form({ formData, setFormData }) {
 
     return (
         <form>
+            <div>
+                <label>Photo:</label>
+                <input type="file" onChange={handleFileChange} />
+            </div>
             <div>
                 <label>Name:</label>
                 <input type="text" name="name" value={formData.name} onChange={handleChange} />

@@ -14,6 +14,7 @@ function App() {
         education: [{ institution: '', degree: '', startYear: '', endYear: '' }],
         experience: [{ company: '', role: '', startYear: '', endYear: '' }],
         skills: '',
+        photo: null,
     });
 
     return (
