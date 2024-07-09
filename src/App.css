@@ -12,11 +12,16 @@ label {
   margin-bottom: 5px;
 }
 
-input {
+input, textarea {
   display: block;
   margin-bottom: 10px;
   padding: 5px;
   width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
 }
 
 div {
@@ -34,4 +39,25 @@ header {
 h1 {
   margin: 0;
   font-size: 24px;
+}
+
+h2, h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
 }
