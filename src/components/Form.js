@@ -1,4 +1,6 @@
 import React from 'react';
+import { TextField, Button, Grid, Typography, IconButton, Paper, Divider } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 function Form({ formData, setFormData }) {
     const handleChange = (e) => {
@@ -46,68 +48,162 @@ function Form({ formData, setFormData }) {
     };
 
     return (
-        <form>
-            <div>
-                <label>Photo:</label>
-                <input type="file" onChange={handleFileChange} />
-            </div>
-            <div>
-                <label>Name:</label>
-                <input type="text" name="name" value={formData.name} onChange={handleChange} />
-            </div>
-            <div>
-                <label>Email:</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} />
-            </div>
-            <div>
-                <label>Phone:</label>
-                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
-            </div>
-            <div>
-                <label>Address:</label>
-                <input type="text" name="address" value={formData.address} onChange={handleChange} />
-            </div>
-            <div>
-                <label>Summary:</label>
-                <textarea name="summary" value={formData.summary} onChange={handleChange} />
-            </div>
-            <div>
-                <h3>Education</h3>
-                {formData.education.map((edu, index) => (
-                    <div key={index}>
-                        <label>Institution:</label>
-                        <input type="text" name="institution" value={edu.institution} onChange={(e) => handleEducationChange(index, e)} />
-                        <label>Degree:</label>
-                        <input type="text" name="degree" value={edu.degree} onChange={(e) => handleEducationChange(index, e)} />
-                        <label>Start Year:</label>
-                        <input type="text" name="startYear" value={edu.startYear} onChange={(e) => handleEducationChange(index, e)} />
-                        <label>End Year:</label>
-                        <input type="text" name="endYear" value={edu.endYear} onChange={(e) => handleEducationChange(index, e)} />
-                    </div>
-                ))}
-                <button type="button" onClick={addEducation}>Add Education</button>
-            </div>
-            <div>
-                <h3>Experience</h3>
-                {formData.experience.map((exp, index) => (
-                    <div key={index}>
-                        <label>Company:</label>
-                        <input type="text" name="company" value={exp.company} onChange={(e) => handleExperienceChange(index, e)} />
-                        <label>Role:</label>
-                        <input type="text" name="role" value={exp.role} onChange={(e) => handleExperienceChange(index, e)} />
-                        <label>Start Year:</label>
-                        <input type="text" name="startYear" value={exp.startYear} onChange={(e) => handleExperienceChange(index, e)} />
-                        <label>End Year:</label>
-                        <input type="text" name="endYear" value={exp.endYear} onChange={(e) => handleExperienceChange(index, e)} />
-                    </div>
-                ))}
-                <button type="button" onClick={addExperience}>Add Experience</button>
-            </div>
-            <div>
-                <label>Skills:</label>
-                <input type="text" name="skills" value={formData.skills} onChange={handleChange} />
-            </div>
-        </form>
+        <div className="full-page">
+            <Paper elevation={3} style={{ padding: '20px', margin: '20px auto', maxWidth: '800px' }}>
+                <form noValidate autoComplete="off">
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <Typography variant="h6" gutterBottom>
+                                Personal Information
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button variant="contained" component="label">
+                                Upload Photo
+                                <input type="file" hidden onChange={handleFileChange} />
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField name="name" label="Name" fullWidth value={formData.name} onChange={handleChange} />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField name="email" label="Email" fullWidth value={formData.email} onChange={handleChange} />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField name="phone" label="Phone" fullWidth value={formData.phone} onChange={handleChange} />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField name="address" label="Address" fullWidth value={formData.address} onChange={handleChange} />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                name="summary"
+                                label="Summary"
+                                multiline
+                                rows={4}
+                                fullWidth
+                                value={formData.summary}
+                                onChange={handleChange}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Divider />
+                            <Typography variant="h6" gutterBottom>
+                                Education
+                            </Typography>
+                        </Grid>
+                        {formData.education.map((edu, index) => (
+                            <Grid container spacing={2} key={index}>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        name="institution"
+                                        label="Institution"
+                                        fullWidth
+                                        value={edu.institution}
+                                        onChange={(e) => handleEducationChange(index, e)}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        name="degree"
+                                        label="Degree"
+                                        fullWidth
+                                        value={edu.degree}
+                                        onChange={(e) => handleEducationChange(index, e)}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        name="startYear"
+                                        label="Start Year"
+                                        fullWidth
+                                        value={edu.startYear}
+                                        onChange={(e) => handleEducationChange(index, e)}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        name="endYear"
+                                        label="End Year"
+                                        fullWidth
+                                        value={edu.endYear}
+                                        onChange={(e) => handleEducationChange(index, e)}
+                                    />
+                                </Grid>
+                            </Grid>
+                        ))}
+                        <Grid item xs={12}>
+                            <IconButton onClick={addEducation} color="primary">
+                                <AddIcon />
+                            </IconButton>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Divider />
+                            <Typography variant="h6" gutterBottom>
+                                Experience
+                            </Typography>
+                        </Grid>
+                        {formData.experience.map((exp, index) => (
+                            <Grid container spacing={2} key={index}>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        name="company"
+                                        label="Company"
+                                        fullWidth
+                                        value={exp.company}
+                                        onChange={(e) => handleExperienceChange(index, e)}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        name="role"
+                                        label="Role"
+                                        fullWidth
+                                        value={exp.role}
+                                        onChange={(e) => handleExperienceChange(index, e)}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        name="startYear"
+                                        label="Start Year"
+                                        fullWidth
+                                        value={exp.startYear}
+                                        onChange={(e) => handleExperienceChange(index, e)}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        name="endYear"
+                                        label="End Year"
+                                        fullWidth
+                                        value={exp.endYear}
+                                        onChange={(e) => handleExperienceChange(index, e)}
+                                    />
+                                </Grid>
+                            </Grid>
+                        ))}
+                        <Grid item xs={12}>
+                            <IconButton onClick={addExperience} color="primary">
+                                <AddIcon />
+                            </IconButton>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Divider />
+                            <Typography variant="h6" gutterBottom>
+                                Skills
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField name="skills" label="Skills" fullWidth value={formData.skills} onChange={handleChange} />
+                        </Grid>
+                    </Grid>
+                </form>
+            </Paper>
+        </div>
     );
 }
 
