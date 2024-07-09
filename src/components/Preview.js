@@ -28,9 +28,7 @@ function Preview({ formData }) {
 
         // Add summary
         doc.text('Summary', 20, yPosition);
-        doc.setFontStyle('italic');
         doc.text(formData.summary, 20, yPosition + 10);
-        doc.setFontStyle('normal');
         yPosition += 30;
 
         // Add education
@@ -141,7 +139,13 @@ function Preview({ formData }) {
                             </Typography>
                         </Grid>
 
-
+                        <Grid item xs={12}>
+                            <Tooltip title="Export PDF">
+                                <IconButton onClick={generatePDF}>
+                                    <SaveAltIcon />
+                                </IconButton>
+                            </Tooltip>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>
